@@ -39,7 +39,7 @@ button {
 
 #display {
   width: 260px;
-  height: 100px;
+  height: 130px;
   border: 5px solid black;
   border-radius: 10px;
   box-shadow: 5px 8px;
@@ -79,4 +79,34 @@ button:focus,
   background-color: #2c9d9d;
   color: black;
   border: 3px solid white;
+}
+
+button:focus,
+#button-equality:focus,
+#button-clear:focus,
+#button-backspace:focus {
+  background-color: #ffff00;
+}
+
+@media (max-width: 400px) {
+  #calculator {
+    width: 270px;
+  }
+
+  #display {
+    width: 260px;
+    height: 120px;
+  }
+
+  button {
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+  }
+
+  #button-clear,
+  #button-backspace {
+    width: 130px;
+    height: 60px;
+  }
 }
