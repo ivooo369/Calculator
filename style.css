@@ -90,23 +90,6 @@ button:focus,
 
 @media (max-width: 400px) {
   #calculator {
-    width: 270px;
-  }
-
-  #display {
-    width: 260px;
-    height: 120px;
-  }
-
-  button {
-    width: 60px;
-    height: 60px;
-    font-size: 18px;
-  }
-
-  #button-clear,
-  #button-backspace {
-    width: 130px;
-    height: 60px;
+    width: 280px;
   }
 }
