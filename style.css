@@ -2,7 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 100vh;
+  height: 100vh;
   background-image: url(https://i.stack.imgur.com/jGlzr.png);
 }
 
@@ -23,6 +23,8 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   box-shadow: 8px 12px;
+  overflow: hidden;
+  position: absolute;
 }
 
 button {
