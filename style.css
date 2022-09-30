@@ -3,7 +3,6 @@ body {
   justify-content: center;
   align-items: center;
   max-height: 100vh;
-  overflow-y: hidden;
   background-image: url(https://i.stack.imgur.com/jGlzr.png);
 }
 
