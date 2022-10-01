@@ -1,14 +1,19 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url(https://i.stack.imgur.com/jGlzr.png);
-}
-
 * {
   margin: 0;
   padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  background-image: url(https://i.stack.imgur.com/jGlzr.png);
 }
 
 #calculator {
@@ -23,8 +28,7 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   box-shadow: 8px 12px;
-  overflow: hidden;
-  position: absolute;
+  margin: 15px 0;
 }
 
 button {
