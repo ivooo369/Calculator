@@ -4,29 +4,35 @@ let currentOperation = null;
 let toResetScreen = false;
 
 const display = document.querySelector("#display");
-const mainScreen = document.querySelector("main-screen");
+const mainScreen = document.querySelector("#main-screen");
 const historyScreen = document.querySelector("#history-screen");
 const numberButtons = document.querySelectorAll(".number");
 const operatorButtons = document.querySelectorAll(".operator");
-const equality = document.querySelector("#equality");
-const decimalPoint = document.querySelector("#decimal-point");
-const signChange = document.querySelector("#sign-change");
+const equalityButton = document.querySelector("#equality");
+const decimalPointButton = document.querySelector("#decimal-point");
+const signChangeButton = document.querySelector("#sign-change");
+const clearButton = document.querySelector("#clear");
+const backspaceButton = document.querySelector("#backspace");
 
-numberButtons.forEach((button) => {
-  button.addEventListener("click", () => appendNumber(button.textContent));
-});
+window.addEventListener("keydown", handleKeyboardInput);
+equalityButton.addEventListener("click", evaluate);
+clearButton.addEventListener("click", clearScreen);
+backspaceButton.addEventListener("click", deleteNumber);
+decimalPointButton.addEventListener("click", appendDecimalPoint);
+
+numberButtons.forEach((button) => button.addEventListener("click", () => appendNumber(button.textContent)));
 
 operatorButtons.forEach((button) => button.addEventListener("click", () => setOperation(button.textContent)));
 
 function appendNumber(num) {
-  if (currentOperation.textContent === "0" || toResetScreen) {
+  if (mainScreen.textContent === "0" || toResetScreen) {
     resetScreen();
   }
   mainScreen.textContent += num;
 }
 
 function resetScreen() {
-  currentOperation.textContent = "";
+  mainScreen.textContent = "";
   toResetScreen = false;
 }
 
@@ -39,26 +45,20 @@ function clearScreen() {
 }
 
 function appendDecimalPoint() {
-  if (toResetScreen) {
-    resetScreen();
+  if (toResetScreen) resetScreen();
+  if (mainScreen.textContent === "") {
+    mainScreen.textContent = "0";
   }
-  if (currentScreen.textContent === "") {
-    currentScreen.textContent = "0";
-  }
-  if (currentScreen.textContent.includes(".")) {
-    return;
-  }
-  currentScreen.textContent += ".";
+  if (mainScreen.textContent.includes(".")) return;
+  mainScreen.textContent += ".";
 }
 
 function deleteNumber() {
-  currentScreen.textContent = mainScreen.textContent.toString().slice(0, -1);
+  mainScreen.textContent = mainScreen.textContent.toString().slice(0, -1);
 }
 
 function setOperation(operator) {
-  if (currentOperation !== null) {
-    evaluate();
-  }
+  if (currentOperation !== null) evaluate();
   firstOperand = mainScreen.textContent;
   currentOperation = operator;
   historyScreen.textContent = `${firstOperand} ${currentOperation}`;
