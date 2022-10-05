@@ -19,9 +19,8 @@ equalityButton.addEventListener("click", evaluate);
 clearButton.addEventListener("click", clearScreen);
 backspaceButton.addEventListener("click", deleteNumber);
 decimalPointButton.addEventListener("click", appendDecimalPoint);
-
+signChangeButton.addEventListener("click", changeSign);
 numberButtons.forEach((button) => button.addEventListener("click", () => appendNumber(button.textContent)));
-
 operatorButtons.forEach((button) => button.addEventListener("click", () => setOperation(button.textContent)));
 
 function appendNumber(num) {
@@ -53,6 +52,14 @@ function appendDecimalPoint() {
   mainScreen.textContent += ".";
 }
 
+function changeSign() {
+  if (mainScreen.textContent > 0) {
+    mainScreen.textContent = "-" + mainScreen.textContent;
+  } else {
+    mainScreen.textContent = mainScreen.textContent * -1;
+  }
+}
+
 function deleteNumber() {
   mainScreen.textContent = mainScreen.textContent.toString().slice(0, -1);
 }
@@ -68,7 +75,7 @@ function setOperation(operator) {
 function evaluate() {
   if (currentOperation === null || toResetScreen) return;
   if (currentOperation === "÷" && mainScreen.textContent === "0") {
-    alert("You can't divide by 0!");
+    mainScreen.textContent = "You can't divide by 0!";
     return;
   }
   secondOperand = mainScreen.textContent;
@@ -110,6 +117,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+  if (num2 === 0) return null;
   return num1 / num2;
 }
 
@@ -136,21 +144,22 @@ function operate(operator, num1, num2) {
   num1 = Number(num1);
   num2 = Number(num2);
 
-  if (operator === "+") {
-    return add(num1, num2);
-  } else if (operator === "-") {
-    return subtract(num1, num2);
-  } else if (operator === "*") {
-    return multiply(num1, num2);
-  } else if (operator === "/") {
-    return divide(num1, num2);
-  } else if (operator === "%") {
-    return remainder(num1, num2);
-  } else if (operator === "^") {
-    return exponentiate(num1, num2);
-  } else if (operator === "!") {
-    return factorial(num1);
-  } else {
-    return null;
+  switch (operator) {
+    case "+":
+      return add(num1, num2);
+    case "−":
+      return subtract(num1, num2);
+    case "×":
+      return multiply(num1, num2);
+    case "÷":
+      return divide(num1, num2);
+    case "%":
+      return remainder(num1, num2);
+    case "^":
+      return exponentiate(num1, num2);
+    case "!":
+      return factorial(num1);
+    default:
+      return null;
   }
 }
