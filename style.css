@@ -14,6 +14,7 @@ body {
   align-items: center;
   min-height: 100%;
   background-image: url(https://i.stack.imgur.com/jGlzr.png);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 #calculator {
@@ -44,6 +45,10 @@ button {
 }
 
 #display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 260px;
   height: 130px;
   border: 5px solid black;
@@ -51,6 +56,25 @@ button {
   box-shadow: 5px 8px;
   background-color: #ffffffaa;
   margin-bottom: 20px;
+}
+
+#main-screen,
+#history-screen {
+  padding: 10px 15px;
+  overflow: auto;
+}
+
+#main-screen {
+  text-align: end;
+  font-size: 30px;
+  font-weight: bold;
+  overflow-y: hidden;
+}
+
+#history-screen {
+  font-size: 20px;
+  height: 40px;
+  overflow-y: auto;
 }
 
 #clear,
@@ -92,6 +116,8 @@ button:focus,
 #clear:focus,
 #backspace:focus {
   background-color: #ffff00;
+  transform: translateY(2px);
+  box-shadow: 1px 1px black;
 }
 
 @media (max-width: 400px) {
