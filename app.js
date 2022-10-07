@@ -13,6 +13,8 @@ const decimalPointButton = document.querySelector("#decimal-point");
 const signChangeButton = document.querySelector("#sign-change");
 const clearButton = document.querySelector("#clear");
 const backspaceButton = document.querySelector("#backspace");
+const errorMessage = document.querySelector("#error-message");
+errorMessage.textContent = "You should know that division by 0 is impossible! Press 'Clear' and start over...";
 
 window.addEventListener("keydown", handleKeyboardInput);
 equalityButton.addEventListener("click", evaluate);
@@ -36,8 +38,11 @@ function resetScreen() {
 }
 
 function clearScreen() {
+  errorMessage.style = "display: none;";
   mainScreen.textContent = 0;
+  mainScreen.style = "color: #000000; font-size: 30px; text-align: end;";
   historyScreen.textContent = "";
+  historyScreen.style = "display: visible;";
   firstOperand = "";
   secondOperand = "";
   currentOperation = null;
@@ -75,7 +80,9 @@ function setOperation(operator) {
 function evaluate() {
   if (currentOperation === null || toResetScreen) return;
   if (currentOperation === "÷" && mainScreen.textContent === "0") {
-    mainScreen.textContent = "You can't divide by 0!";
+    errorMessage.style = "display: block; margin: auto;";
+    mainScreen.style = "display: none;";
+    historyScreen.style = "display: none;";
     return;
   }
   secondOperand = mainScreen.textContent;
@@ -100,7 +107,7 @@ function handleKeyboardInput(e) {
 function convertOperator(keyboardOperator) {
   if (keyboardOperator === "/") return "÷";
   if (keyboardOperator === "*") return "×";
-  if (keyboardOperator === "-") return "−";
+  if (keyboardOperator === "-") return "-";
   if (keyboardOperator === "+") return "+";
 }
 

@@ -48,14 +48,22 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   width: 260px;
   height: 130px;
   border: 5px solid black;
   border-radius: 10px;
-  box-shadow: 5px 8px;
+  box-shadow: 5px 8px black;
   background-color: #ffffffaa;
   margin-bottom: 20px;
+}
+
+#error-message {
+  display: none;
+  color: #ca1010;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
 }
 
 #main-screen,
@@ -73,7 +81,7 @@ button {
 
 #history-screen {
   font-size: 20px;
-  height: 40px;
+  height: 30px;
   overflow-y: auto;
 }
 
