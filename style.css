@@ -57,7 +57,7 @@ button {
   margin-bottom: 20px;
 }
 
-#error-message {
+#error-message-division-by-zero {
   justify-content: center;
   text-align: center;
   display: none;
@@ -70,20 +70,19 @@ button {
 #main-screen,
 #history-screen {
   padding: 10px 15px;
-  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 #main-screen {
   text-align: end;
   font-size: 30px;
   font-weight: bold;
-  overflow-y: hidden;
 }
 
 #history-screen {
   font-size: 20px;
   height: 30px;
-  overflow-y: auto;
 }
 
 #clear,
@@ -109,22 +108,17 @@ button {
 button:hover,
 #equality:hover,
 #clear:hover,
-#backspace:hover,
-button:focus,
-#equality:focus,
-#clear:focus,
-#backspace:focus {
+#backspace:hover {
   cursor: pointer;
-  background-color: #2c9d9d;
+  background-color: #ffff00;
   color: black;
   border: 3px solid white;
 }
 
-button:focus,
-#equality:focus,
-#clear:focus,
-#backspace:focus {
-  background-color: #ffff00;
+button:active,
+#equality:active,
+#clear:active,
+#backspace:active {
   transform: translateY(2px);
   box-shadow: 1px 1px black;
 }
