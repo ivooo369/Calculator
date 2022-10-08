@@ -49,7 +49,7 @@ function clearScreen() {
 }
 
 function appendDecimalPoint() {
-  if (toResetScreen) resetScreen();
+  // if (toResetScreen) resetScreen();
   if (mainScreen.textContent === "") {
     mainScreen.textContent = "0";
   }
@@ -66,7 +66,9 @@ function changeSign() {
 }
 
 function deleteNumber() {
-  mainScreen.textContent = mainScreen.textContent.toString().slice(0, -1);
+  if (mainScreen.textContent !== "0") {
+    mainScreen.textContent = mainScreen.textContent.toString().slice(0, -1);
+  }
 }
 
 function setOperation(operator) {
@@ -85,6 +87,11 @@ function evaluate() {
     historyScreen.style = "display: none;";
     return;
   }
+  if (currentOperation === "!") {
+    mainScreen.textContent = roundResult(operate(currentOperation, firstOperand));
+    historyScreen.textContent = `${firstOperand} ${currentOperation} =`;
+    return;
+  }
   secondOperand = mainScreen.textContent;
   mainScreen.textContent = roundResult(operate(currentOperation, firstOperand, secondOperand));
   historyScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
@@ -97,11 +104,11 @@ function roundResult(num) {
 
 function handleKeyboardInput(e) {
   if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
-  if (e.key === ".") appendPoint();
+  if (e.key === ".") appendDecimalPoint();
   if (e.key === "=" || e.key === "Enter") evaluate();
   if (e.key === "Backspace") deleteNumber();
-  if (e.key === "Escape") clear();
-  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") setOperation(convertOperator(e.key));
+  if (e.key === "Escape") clearScreen();
+  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/" || e.key === "%" || e.key === "^" || e.key === "!") setOperation(convertOperator(e.key));
 }
 
 function convertOperator(keyboardOperator) {
@@ -109,6 +116,9 @@ function convertOperator(keyboardOperator) {
   if (keyboardOperator === "*") return "×";
   if (keyboardOperator === "-") return "-";
   if (keyboardOperator === "+") return "+";
+  if (keyboardOperator === "%") return "%";
+  if (keyboardOperator === "^") return "^";
+  if (keyboardOperator === "!") return "!";
 }
 
 function add(num1, num2) {
@@ -124,7 +134,6 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  if (num2 === 0) return null;
   return num1 / num2;
 }
 

@@ -14,7 +14,7 @@ body {
   align-items: center;
   min-height: 100%;
   background-image: url(https://i.stack.imgur.com/jGlzr.png);
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 #calculator {
@@ -58,12 +58,13 @@ button {
 }
 
 #error-message {
+  justify-content: center;
+  text-align: center;
   display: none;
   color: #ca1010;
   font-size: 20px;
   font-weight: bold;
-  justify-content: center;
-  text-align: center;
+  padding: 10px;
 }
 
 #main-screen,
