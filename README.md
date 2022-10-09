@@ -1,6 +1,6 @@
 # Calculator
 
-I made this calculator during The Odin Project curricilum. This is the last project from the Foundation part.
+I made this calculator during The Odin Project curriculum. This is the last project from the Foundation part.
 
 ## Features:
 
