@@ -94,9 +94,20 @@ function deleteNumber() {
 }
 
 function setOperation(operator) {
-  if (currentOperation !== null) evaluate();
+  if (currentOperation !== null && currentOperation !== "!") evaluate();
   firstOperand = mainScreen.textContent;
   currentOperation = operator;
+  if (currentOperation === "!") {
+    numberButtons.forEach((button) => (button.disabled = true));
+    signChangeButton.disabled = true;
+    decimalPointButton.disabled = true;
+    backspaceButton.disabled = true;
+  } else {
+    numberButtons.forEach((button) => (button.disabled = false));
+    signChangeButton.disabled = false;
+    decimalPointButton.disabled = false;
+    backspaceButton.disabled = false;
+  }
   historyScreen.textContent = `${firstOperand} ${currentOperation}`;
   historyScreen.style = "text-align: start; color: #000000;";
   toResetScreen = true;
@@ -107,8 +118,6 @@ function evaluate() {
     if (firstOperand >= -170 && firstOperand <= 170) {
       mainScreen.textContent = roundResult(operate(currentOperation, firstOperand));
       historyScreen.textContent = `${firstOperand} ${currentOperation} =`;
-      currentOperation = null;
-      toResetScreen = false;
     } else if (firstOperand < -170 || firstOperand > 170) {
       historyScreen.style = "text-align: center; color: #ca1010;";
       historyScreen.textContent = "Range: from -170! to 170!";
